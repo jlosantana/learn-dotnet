@@ -1,0 +1,106 @@
+# Compiled binary and object files
+bin/
+obj/
+out/
+
+# Build artifacts
+*.exe
+*.dll
+*.pdb
+*.appx
+*.appxbundle
+*.msix
+*.msixbundle
+*.nupkg
+*.snupkg
+*.log
+
+# User-specific files
+.vscode/
+*.user
+*.suo
+*.cache
+*.preferences
+*.vs
+
+# Rider / JetBrains files
+.idea/
+*.sln.iml
+
+# ASP.NET specific
+appsettings.Development.json
+appsettings.Local.json
+appsettings.Production.json
+secrets.json
+
+# Entity Framework
+Migrations/
+
+# NuGet packages
+*.nupkg
+packages/
+project.lock.json
+project.assets.json
+PackageRestore/
+
+# Logs and debugging
+*.tlog
+*.log
+*.bak
+*.vspscc
+*.vssscc
+*.pdb
+*.ilk
+*.obj
+*.iobj
+*.resources
+*.tlb
+*.tli
+*.hmap
+
+# Temporary files
+*.tmp
+*.cache
+*.diff
+*.orig
+*.rej
+*.swo
+*.swn
+*.swp
+
+# macOS & Linux
+.DS_Store
+._*
+.nfs*
+
+# Windows specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Dotnet tooling
+.vs/
+.env
+.idea/
+.sln.iml
+*.generated.cs
+test-results/
+coverage/
+coverage.info
+coverage.opencover.xml
+coverage.cobertura.xml
+
+# Docker
+**/[Dd]ockerfile
+**/[Dd]ocker-compose*.yml
+**/docker-compose.override.yml
+
+# Local database files
+*.mdf
+*.ldf
+*.db-shm
+*.db-wal
+*.db-journal
+
+# Optional
+!appsettings.json
