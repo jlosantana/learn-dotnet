@@ -1,14 +1,37 @@
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Rewrite;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
+
+// Middleware
+app.UseRewriter(new RewriteOptions().AddRedirect("tasks/(.*)", "todos/"));
+
+// Custom Middleware
+app.Use(async (context, next) => {
+    Console.WriteLine($"[{context.Request.Method} {context.Request.Path}]");
+    await next(context);
+    Console.WriteLine($"[{context.Request.Method} {context.Request.Path}]");
+});
 
 var todos = new List<Todo>();
 
 app.MapPost("/todos", (Todo task)=>{
     todos.Add(task);
     return TypedResults.Created("/todos/{id}", task);
+}).AddEndpointFilter(async (contex, next) => {
+    var taskArgument = contex.GetArgument<Todo>(0);
+    var errors = new Dictionary<string, string[]>();
+    if (taskArgument.IsCompleted)
+    {
+        errors.Add(nameof(Todo.IsCompleted), ["Cannot add complete TODO"]);
+    }
+    if (errors.Count > 0)
+    {
+        return Results.ValidationProblem(errors);
+    }
+    return await next(contex);
 });
 app.MapGet("/todos/{id}", Results<Ok<Todo>, NotFound> (int id) => {
     var targetTodo = todos.SingleOrDefault(t => id == t.Id);
