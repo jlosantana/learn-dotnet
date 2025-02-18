@@ -1,0 +1,21 @@
+POST http://localhost:5099/todos
+content-type: application/json
+
+{
+    "id": 1,
+    "name": "Study .NET",
+    "dueDate": "2025-02-18",
+    "isCompleted": false
+}
+
+###
+
+GET http://localhost:5099/todos
+
+###
+
+GET http://localhost:5099/todos/1
+
+###
+
+DELETE http://localhost:5099/todos/1
